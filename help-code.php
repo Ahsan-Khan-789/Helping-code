@@ -1,3 +1,24 @@
+/*rigster custom logo*/
+<?php 
+add_theme_support( 'custom-logo', array(
+	'height'      => 100,
+	'width'       => 400,
+	'flex-height' => true,
+	'flex-width'  => true,
+	'header-text' => array( 'site-title', 'site-description' ),
+) );
+?>
+/*where you whant theme logo */
+ <?php 
+$custom_logo_id = get_theme_mod( 'custom_logo' );
+$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+?>
+<img src="<?php echo $image[0]; ?>" alt="">
+
+
+/*end custom logo*/
+
+
 UPDATE `db_frtireking`.`wp_users` SET `user_pass`=MD5('Admin123#') WHERE  `ID`=1;
 
 
