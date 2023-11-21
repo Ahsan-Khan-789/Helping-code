@@ -1,19 +1,38 @@
 /*rigster custom logo*/
-<?php 
-add_theme_support( 'custom-logo', array(
-	'height'      => 100,
-	'width'       => 400,
-	'flex-height' => true,
-	'flex-width'  => true,
-	'header-text' => array( 'site-title', 'site-description' ),
-) );
+<?php
+ /**
+     * Add support for core custom logo.
+     *
+     * @link https://codex.wordpress.org/Theme_Logo
+     */
+    add_theme_support(
+      'custom-logo',
+      array(
+        'height'      => 250,
+        'width'       => 250,
+        'flex-width'  => true,
+        'flex-height' => true,
+      )
+    );
 ?>
+
 /*where you whant theme logo */
- <?php 
-$custom_logo_id = get_theme_mod( 'custom_logo' );
-$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-?>
-<img src="<?php echo $image[0]; ?>" alt="">
+<?php
+the_custom_logo();
+if ( is_front_page() && is_home() ) :
+	?>
+	<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+	<?php
+else :
+	?>
+	<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+	<?php
+endif;
+$alpha_description = get_bloginfo( 'description', 'display' );
+if ( $alpha_description || is_customize_preview() ) :
+	?>
+	<p class="site-description"><?php echo $alpha_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+<?php endif; ?>
 
 
 /*end custom logo*/
