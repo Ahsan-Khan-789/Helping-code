@@ -37,6 +37,15 @@ if ( $alpha_description || is_customize_preview() ) :
 
 /*end custom logo*/
 
+/*start enque files*/
+function alpha() {
+ wp_enqueue_style( 'main-css', get_template_directory_uri() . '/css/main.css', array(), '1.0.0', 'all');
+ wp_enqueue_style( 'Montserrat', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap', false );
+ wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '4.0.0', true );
+
+add_action( 'wp_enqueue_scripts', 'alpha' );
+
+/******End enque file *******/
 
 UPDATE `db_frtireking`.`wp_users` SET `user_pass`=MD5('Admin123#') WHERE  `ID`=1;
 
